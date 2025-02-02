@@ -2,5 +2,19 @@
   "dart.flutterRunAdditionalArgs": [
     "--no-enable-impeller"
   ],
-  "dart.flutterSdkPath": ".fvm/versions/3.27.3"
+  "dart.flutterSdkPath": ".fvm/versions/3.27.3",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.freezed.dart": false,
+    "**/*.g.dart": true,
+    "**/.dart_tool": true,
+    "**/.fvm": true,
+    "**/.gitkeep": false
+  },
+  "explorerExclude.backup": {}
 }
