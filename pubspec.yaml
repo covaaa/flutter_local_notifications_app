@@ -23,10 +23,12 @@ flutter_launcher_icons:
   adaptive_icon_monochrome: 'assets/icons/android/ic_launcher_monochrome.png'
   android: true
   image_path_android: 'assets/icons/android/ic_launcher.png'
-  ios: false
+  image_path_ios: 'assets/icons/ios/app-icon.png'
+  ios: true
   macos:
     generate: false
   min_sdk_android: 21
+  remove_alpha_ios: true
   web:
     generate: false
   windows:
