@@ -1,38 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications_app/src/shared/theme/theme.dart';
+import 'package:flutter_local_notifications_app/src/features/notification/notification.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage(this.title, {super.key});
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: context.colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: context.textTheme.headlineMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() => _counter++),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      appBar: AppBar(title: Text(title)),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+        children: const [
+          SimpleCard(),
+          SizedBox(height: 4),
+          ScheduledCard(),
+          SizedBox(height: 4),
+          UpdatableCard(),
+        ],
       ),
     );
   }
