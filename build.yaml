@@ -1,0 +1,17 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - 'tool/**'
+      - pubspec.yaml
+      - lib/$lib$
+      - $package$
+    builders:
+      source_gen|combining_builder:
+        generate_for:
+          include:
+            - lib/src/**
+        options:
+          preamble: // coverage:ignore-file
+          ignore_for_file:
+            - duplicate_ignore
