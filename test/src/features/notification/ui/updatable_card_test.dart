@@ -10,6 +10,7 @@ void main() {
 
   setUp(
     () {
+      TestWidgetsFlutterBinding.ensureInitialized();
       mockEasyNotificationService = MockEasyNotificationService();
       registerFallbackValue(Notification.updatable());
     },

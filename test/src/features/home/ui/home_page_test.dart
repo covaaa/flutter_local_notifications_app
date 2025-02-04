@@ -9,6 +9,7 @@ void main() {
 
   setUp(
     () {
+      TestWidgetsFlutterBinding.ensureInitialized();
       mockEasyNotificationService = MockEasyNotificationService();
     },
   );
