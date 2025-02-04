@@ -10,7 +10,6 @@ void main() {
 
   setUp(
     () {
-      TestWidgetsFlutterBinding.ensureInitialized();
       mockEasyNotificationService = MockEasyNotificationService();
       registerFallbackValue(Notification.scheduled(DateTime.now()));
     },
@@ -25,14 +24,7 @@ void main() {
   testWidgets(
     'should render scheduled card',
     (tester) async {
-      await tester.pumpApp(
-        overrides: [
-          easyNotificationServiceProvider.overrideWithValue(
-            mockEasyNotificationService,
-          ),
-        ],
-        child: const ScheduledCard(),
-      );
+      await tester.pumpApp(child: const ScheduledCard());
       expect(find.byType(ScheduledCard), findsOneWidget);
     },
   );

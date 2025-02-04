@@ -10,7 +10,6 @@ void main() {
 
   setUp(
     () {
-      TestWidgetsFlutterBinding.ensureInitialized();
       mockEasyNotificationService = MockEasyNotificationService();
       registerFallbackValue(Notification.updatable());
     },
@@ -25,14 +24,7 @@ void main() {
   testWidgets(
     'should render updatable card',
     (tester) async {
-      await tester.pumpApp(
-        overrides: [
-          easyNotificationServiceProvider.overrideWithValue(
-            mockEasyNotificationService,
-          ),
-        ],
-        child: const UpdatableCard(),
-      );
+      await tester.pumpApp(child: const UpdatableCard());
       expect(find.byType(UpdatableCard), findsOneWidget);
     },
   );
