@@ -55,7 +55,10 @@ void main() {
     },
   );
 
-  tearDown(() => container.dispose());
+  tearDown(() {
+    container.dispose();
+    debugDefaultTargetPlatformOverride = null;
+  });
 
   test(
     'should create',
