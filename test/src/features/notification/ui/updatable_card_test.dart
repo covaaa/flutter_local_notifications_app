@@ -24,7 +24,14 @@ void main() {
   testWidgets(
     'should render updatable card',
     (tester) async {
-      await tester.pumpApp(child: const UpdatableCard());
+      await tester.pumpApp(
+        overrides: [
+          easyNotificationServiceProvider.overrideWithValue(
+            mockEasyNotificationService,
+          ),
+        ],
+        child: const UpdatableCard(),
+      );
       expect(find.byType(UpdatableCard), findsOneWidget);
     },
   );

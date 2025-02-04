@@ -24,7 +24,14 @@ void main() {
   testWidgets(
     'should render simple card',
     (tester) async {
-      await tester.pumpApp(child: const SimpleCard());
+      await tester.pumpApp(
+        overrides: [
+          easyNotificationServiceProvider.overrideWithValue(
+            mockEasyNotificationService,
+          ),
+        ],
+        child: const SimpleCard(),
+      );
       expect(find.byType(SimpleCard), findsOneWidget);
     },
   );
