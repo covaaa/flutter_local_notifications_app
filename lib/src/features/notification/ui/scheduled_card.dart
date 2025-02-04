@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Notification;
+import 'package:flutter_local_notifications_app/src/features/notification/domain/notification.dart';
 import 'package:flutter_local_notifications_app/src/features/notification/state/read.dart';
 import 'package:flutter_local_notifications_app/src/shared/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,24 +17,12 @@ class ScheduledCard extends ConsumerWidget {
           children: [
             Text('Scheduled Notification', style: context.titleMediumBold),
             const SizedBox(height: 4),
-            ListTile(
-              title: Text(
-                'Schedule Time',
-                style: context.titleSmall?.copyWith(
-                  color: context.theme.hintColor,
-                ),
-              ),
-              subtitle:
-                  Text('${DateTime.now()}', style: context.bodyMediumBold),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.calendar_today),
-              ),
-            ),
-            const SizedBox(height: 4),
             ElevatedButton(
               onPressed: () {
-                ref.read(readNotificationProvider.notifier).showSchedule();
+                final date = DateTime.now().add(const Duration(seconds: 5));
+                final schedule = Notification.scheduled(date);
+                final provider = readNotificationProvider;
+                ref.read(provider.notifier).showSchedule(schedule);
               },
               child: const Text('Schedule Notification'),
             ),
