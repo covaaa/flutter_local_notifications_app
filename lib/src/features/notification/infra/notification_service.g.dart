@@ -4,27 +4,30 @@
 
 // coverage:ignore-file
 
-part of 'read.dart';
+part of 'notification_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$readNotificationHash() => r'f7e46c144a159be2d88283eda9085908e112d868';
+String _$notificationServiceHash() =>
+    r'f1375e47f334abfe1fb6ca226f4268cb714c202a';
 
-/// See also [ReadNotification].
-@ProviderFor(ReadNotification)
-final readNotificationProvider =
-    AutoDisposeAsyncNotifierProvider<ReadNotification, void>.internal(
-  ReadNotification.new,
-  name: r'readNotificationProvider',
+/// See also [notificationService].
+@ProviderFor(notificationService)
+final notificationServiceProvider =
+    AutoDisposeProvider<NotificationService>.internal(
+  notificationService,
+  name: r'notificationServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$readNotificationHash,
+      : _$notificationServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ReadNotification = AutoDisposeAsyncNotifier<void>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef NotificationServiceRef = AutoDisposeProviderRef<NotificationService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

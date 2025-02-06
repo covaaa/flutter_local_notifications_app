@@ -3,20 +3,20 @@ import 'package:flutter_local_notifications_app/src/features/notification/notifi
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import '../../../../extensions/tester_x.dart';
-import '../infra/easy_notification_service_test.dart';
+import '../infra/notification_service_test.dart';
 
 void main() {
-  late MockEasyNotificationService mockEasyNotificationService;
+  late MockNotificationService mockNotificationService;
 
   setUp(
     () {
-      mockEasyNotificationService = MockEasyNotificationService();
+      mockNotificationService = MockNotificationService();
       registerFallbackValue(Notification.scheduled(DateTime.now()));
     },
   );
 
   Future<void> mockCreateScheduledNotification() {
-    return mockEasyNotificationService.createScheduledNotification(
+    return mockNotificationService.createScheduledNotification(
       any(that: isA<Notification>()),
     );
   }
@@ -35,8 +35,8 @@ void main() {
       when(mockCreateScheduledNotification).thenAnswer((_) async {});
       await tester.pumpApp(
         overrides: [
-          easyNotificationServiceProvider.overrideWithValue(
-            mockEasyNotificationService,
+          notificationServiceProvider.overrideWithValue(
+            mockNotificationService,
           ),
         ],
         child: const ScheduledCard(),
