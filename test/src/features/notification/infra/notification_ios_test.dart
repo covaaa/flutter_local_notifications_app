@@ -17,7 +17,7 @@ void main() {
   late NotificationPlatform platform;
 
   setUp(
-    () async {
+    () {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
       IOSFlutterLocalNotificationsPlugin.registerWith();
       initializeTimeZones();

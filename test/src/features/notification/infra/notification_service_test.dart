@@ -22,7 +22,7 @@ void main() {
   late NotificationService service;
 
   setUp(
-    () async {
+    () {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       AndroidFlutterLocalNotificationsPlugin.registerWith();
       initializeTimeZones();

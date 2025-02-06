@@ -12,7 +12,7 @@ void main() {
   late ProviderContainer container;
 
   setUp(
-    () async {
+    () {
       debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
       MacOSFlutterLocalNotificationsPlugin.registerWith();
       initializeTimeZones();

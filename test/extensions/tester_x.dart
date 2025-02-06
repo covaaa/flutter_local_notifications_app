@@ -25,18 +25,15 @@ extension WidgetTesterX on WidgetTester {
 
 extension TestDefaultBinaryMessengerBindingX
     on TestDefaultBinaryMessengerBinding {
-  void withFakeLocalNotifications({
-    bool initialize = true,
-    bool permission = true,
-  }) {
+  void withFakeLocalNotifications() {
     return defaultBinaryMessenger.setMockMethodCallHandler(
       const MethodChannel('dexterous.com/flutter/local_notifications'),
       (call) async => switch (call.method) {
-        'initialize' => initialize,
+        'initialize' => true,
         // for iOS
-        'requestPermissions' => permission,
+        'requestPermissions' => true,
         // for Android
-        'requestNotificationsPermission' => permission,
+        'requestNotificationsPermission' => true,
         'show' => <String, Object?>{},
         'cancel' => <String, Object?>{},
         'zonedSchedule' => <String, Object?>{},
@@ -45,20 +42,20 @@ extension TestDefaultBinaryMessengerBindingX
         'getNotificationAppLaunchDetails' => null,
         String() => () {
             debugPrint('Unexpected method: ${call.method}');
-            throw UnimplementedError();
+            throw UnimplementedError('Unexpected method: ${call.method}');
           }(),
       },
     );
   }
 
-  void withFakeTimezone({String name = 'Asia/Tokyo'}) {
+  void withFakeTimezone() {
     return defaultBinaryMessenger.setMockMethodCallHandler(
       const MethodChannel('flutter_timezone'),
       (call) async => switch (call.method) {
-        'getLocalTimezone' => name,
+        'getLocalTimezone' => 'Asia/Tokyo',
         String() => () {
             debugPrint('Unexpected method: ${call.method}');
-            throw UnimplementedError();
+            throw UnimplementedError('Unexpected method: ${call.method}');
           }(),
       },
     );
