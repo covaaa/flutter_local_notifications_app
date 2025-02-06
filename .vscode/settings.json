@@ -2,7 +2,7 @@
   "dart.flutterRunAdditionalArgs": [
     "--no-enable-impeller"
   ],
-  "dart.flutterSdkPath": ".fvm/versions/3.27.3",
+  "dart.flutterSdkPath": ".fvm/versions/3.27.4",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
