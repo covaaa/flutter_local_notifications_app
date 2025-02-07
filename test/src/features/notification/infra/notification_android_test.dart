@@ -19,6 +19,7 @@ void main() {
   setUp(
     () {
       binding = TestDefaultBinaryMessengerBinding.instance
+        ..setUpFakeTimezone()
         ..setUpFakeLocalNotifications();
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       AndroidFlutterLocalNotificationsPlugin.registerWith();
@@ -52,7 +53,7 @@ void main() {
 
   test(
     'should initialize',
-    () => expect(platform.initialize(), completion(isTrue)),
+    () => expect(platform.initialize(), completion(isA<void>())),
   );
 
   test(

@@ -35,15 +35,16 @@ final class NotificationIOS extends NotificationMobile {
   List<Object?> get props => [details, plugin];
 
   @override
-  Future<bool> initialize() async {
-    final result = await plugin.initialize(
+  Future<bool> _initializePlugin() async {
+    final initialized = await plugin.initialize(
       const DarwinInitializationSettings(
         requestAlertPermission: false,
         requestBadgePermission: false,
         requestSoundPermission: false,
       ),
     );
-    return result ?? false;
+    debugPrint('🔔 iOS Notification initialized: $initialized');
+    return initialized ?? false;
   }
 
   @override

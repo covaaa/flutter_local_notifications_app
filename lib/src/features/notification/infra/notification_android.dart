@@ -58,7 +58,11 @@ final class NotificationAndroid extends NotificationMobile {
   List<Object?> get props => [details, settings, plugin];
 
   @override
-  Future<bool> initialize() async => plugin.initialize(settings);
+  Future<bool> _initializePlugin() async {
+    final initialized = await plugin.initialize(settings);
+    debugPrint('🔔 Android Notification initialized: $initialized');
+    return initialized;
+  }
 
   @override
   Future<bool> _askPermission() async {

@@ -1,12 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications_app/src/features/notification/domain/notification.dart';
 import 'package:flutter_local_notifications_app/src/features/notification/infra/notification_platform.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 part 'notification_service.g.dart';
 
 @riverpod
@@ -22,24 +18,13 @@ class NotificationService extends Equatable {
   @override
   List<NotificationPlatform> get props => [platform];
 
-  Future<void> initialize() async {
-    return switch (platform) {
-      NotificationMobile() => () async {
-          tz.initializeTimeZones();
-          final name = await FlutterTimezone.getLocalTimezone();
-          debugPrint('🕐 Timezone initialized: $name');
-          tz.setLocalLocation(tz.getLocation(name));
-          final initialized = await platform.initialize();
-          debugPrint('🔔 Notification initialized: $initialized');
-        }(),
-    };
-  }
+  Future<void> initialize() => platform.initialize();
 
-  Future<void> createNotification(Notification notification) async {
+  Future<void> createNotification(Notification notification) {
     return platform.showNotification(notification);
   }
 
-  Future<void> createScheduledNotification(Notification notification) async {
+  Future<void> createScheduledNotification(Notification notification) {
     return platform.showScheduledNotification(notification);
   }
 
@@ -52,7 +37,7 @@ class NotificationService extends Equatable {
     return updateNotification(notification.copyWithTired());
   }
 
-  Future<void> updateNotification(Notification notification) async {
+  Future<void> updateNotification(Notification notification) {
     return platform.updateNotification(notification);
   }
 }
