@@ -8,7 +8,7 @@ import '../../../../extensions/tester_x.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  TestDefaultBinaryMessengerBinding.instance.withFakeLocalNotifications();
+  late TestDefaultBinaryMessengerBinding binding;
   late DateTime date;
   late Notification hello;
   late Notification scheduled;
@@ -18,6 +18,8 @@ void main() {
 
   setUp(
     () {
+      binding = TestDefaultBinaryMessengerBinding.instance
+        ..setUpFakeLocalNotifications();
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       AndroidFlutterLocalNotificationsPlugin.registerWith();
       initializeTimeZones();
@@ -33,6 +35,7 @@ void main() {
   tearDown(() {
     container.dispose();
     debugDefaultTargetPlatformOverride = null;
+    binding.setUpNull();
   });
 
   test(

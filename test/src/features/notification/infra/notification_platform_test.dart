@@ -8,11 +8,13 @@ import '../../../../extensions/tester_x.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  TestDefaultBinaryMessengerBinding.instance.withFakeLocalNotifications();
+  late TestDefaultBinaryMessengerBinding binding;
   late ProviderContainer container;
 
   setUp(
     () {
+      binding = TestDefaultBinaryMessengerBinding.instance
+        ..setUpFakeLocalNotifications();
       debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
       MacOSFlutterLocalNotificationsPlugin.registerWith();
       initializeTimeZones();
@@ -23,6 +25,7 @@ void main() {
   tearDown(() {
     container.dispose();
     debugDefaultTargetPlatformOverride = null;
+    binding.setUpNull();
   });
 
   test(
