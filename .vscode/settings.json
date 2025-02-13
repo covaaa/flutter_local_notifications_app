@@ -1,20 +1,17 @@
 {
-  "dart.flutterRunAdditionalArgs": [
-    "--no-enable-impeller"
-  ],
-  "dart.flutterSdkPath": ".fvm/versions/3.27.4",
+  "dart.flutterSdkPath": ".fvm/versions/3.29.0",
+  "explorerExclude.backup": {},
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
     "**/*.freezed.dart": false,
     "**/*.g.dart": true,
+    "**/.DS_Store": true,
     "**/.dart_tool": true,
     "**/.fvm": true,
-    "**/.gitkeep": false
-  },
-  "explorerExclude.backup": {}
+    "**/.git": true,
+    "**/.gitkeep": false,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true
+  }
 }
