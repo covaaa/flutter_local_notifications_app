@@ -16,22 +16,21 @@ void main() {
   late ProviderContainer container;
   late NotificationPlatform platform;
 
-  setUp(
-    () {
-      binding = TestDefaultBinaryMessengerBinding.instance
-        ..setUpFakeTimezone()
-        ..setUpFakeLocalNotifications();
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-      IOSFlutterLocalNotificationsPlugin.registerWith();
-      initializeTimeZones();
-      date = DateTime.now().add(const Duration(minutes: 1));
-      hello = Notification.hello();
-      scheduled = Notification.scheduled(date);
-      updatable = Notification.updatable();
-      container = ProviderContainer();
-      platform = container.read(notificationPlatformProvider);
-    },
-  );
+  setUp(() {
+    binding =
+        TestDefaultBinaryMessengerBinding.instance
+          ..setUpFakeTimezone()
+          ..setUpFakeLocalNotifications();
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+    IOSFlutterLocalNotificationsPlugin.registerWith();
+    initializeTimeZones();
+    date = DateTime.now().add(const Duration(minutes: 1));
+    hello = Notification.hello();
+    scheduled = Notification.scheduled(date);
+    updatable = Notification.updatable();
+    container = ProviderContainer();
+    platform = container.read(notificationPlatformProvider);
+  });
 
   tearDown(() {
     container.dispose();
@@ -39,18 +38,15 @@ void main() {
     binding.setUpNull();
   });
 
-  test(
-    'should get props',
-    () {
-      expect(
-        platform.props,
-        equals([
-          isA<DarwinNotificationDetails>(),
-          isA<IOSFlutterLocalNotificationsPlugin>(),
-        ]),
-      );
-    },
-  );
+  test('should get props', () {
+    expect(
+      platform.props,
+      equals([
+        isA<DarwinNotificationDetails>(),
+        isA<IOSFlutterLocalNotificationsPlugin>(),
+      ]),
+    );
+  });
 
   test(
     'should initialize',
@@ -72,9 +68,7 @@ void main() {
 
   test(
     'should update notification',
-    () => expect(
-      platform.updateNotification(updatable),
-      completion(isA<void>()),
-    ),
+    () =>
+        expect(platform.updateNotification(updatable), completion(isA<void>())),
   );
 }

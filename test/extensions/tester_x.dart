@@ -39,8 +39,8 @@ extension TestDefaultBinaryMessengerBindingX
   void setUpFakeLocalNotifications() {
     defaultBinaryMessenger.setMockMethodCallHandler(
       const MethodChannel('dexterous.com/flutter/local_notifications'),
-      (call) => Future.value(
-        switch (call.method) {
+      (call) {
+        final value = switch (call.method) {
           'initialize' => true,
           // for iOS
           'requestPermissions' => true,
@@ -53,24 +53,25 @@ extension TestDefaultBinaryMessengerBindingX
           'getActiveNotifications' => <Map<String, Object?>>[],
           'getNotificationAppLaunchDetails' => null,
           String() => PlatformException(
-              code: 'Unexpected method: ${call.method}',
-            ),
-        },
-      ),
+            code: 'Unexpected method: ${call.method}',
+          ),
+        };
+        return Future.value(value);
+      },
     );
   }
 
   void setUpFakeTimezone() {
     defaultBinaryMessenger.setMockMethodCallHandler(
       const MethodChannel('flutter_timezone'),
-      (call) => Future.value(
-        switch (call.method) {
+      (call) {
+        final code = 'Unexpected method: ${call.method}';
+        final value = switch (call.method) {
           'getLocalTimezone' => 'Asia/Tokyo',
-          String() => throw PlatformException(
-              code: 'Unexpected method: ${call.method}',
-            ),
-        },
-      ),
+          String() => throw PlatformException(code: code),
+        };
+        return Future.value(value);
+      },
     );
   }
 }

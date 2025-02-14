@@ -11,20 +11,15 @@ void main() {
   late MockProvider mockProvider;
   late RiverpodObserver sut;
 
-  setUp(
-    () {
-      mockProvider = MockProvider();
-      sut = RiverpodObserver();
-    },
-  );
+  setUp(() {
+    mockProvider = MockProvider();
+    sut = RiverpodObserver();
+  });
 
-  test(
-    'should observe',
-    () {
-      sut
-        ..didAddProvider(mockProvider, 0, ProviderContainer())
-        ..didUpdateProvider(mockProvider, 0, 1, ProviderContainer())
-        ..didDisposeProvider(mockProvider, ProviderContainer());
-    },
-  );
+  test('should observe', () {
+    sut
+      ..didAddProvider(mockProvider, 0, ProviderContainer())
+      ..didUpdateProvider(mockProvider, 0, 1, ProviderContainer())
+      ..didDisposeProvider(mockProvider, ProviderContainer());
+  });
 }

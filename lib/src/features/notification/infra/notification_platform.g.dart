@@ -17,14 +17,15 @@ String _$notificationPlatformHash() =>
 @ProviderFor(notificationPlatform)
 final notificationPlatformProvider =
     AutoDisposeProvider<NotificationPlatform>.internal(
-  notificationPlatform,
-  name: r'notificationPlatformProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$notificationPlatformHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      notificationPlatform,
+      name: r'notificationPlatformProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$notificationPlatformHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element

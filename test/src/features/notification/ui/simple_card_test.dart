@@ -8,12 +8,10 @@ import '../infra/notification_service_test.dart';
 void main() {
   late MockNotificationService mockNotificationService;
 
-  setUp(
-    () {
-      mockNotificationService = MockNotificationService();
-      registerFallbackValue(Notification.hello());
-    },
-  );
+  setUp(() {
+    mockNotificationService = MockNotificationService();
+    registerFallbackValue(Notification.hello());
+  });
 
   Future<void> mockCreateNotification() {
     return mockNotificationService.createNotification(
@@ -21,28 +19,20 @@ void main() {
     );
   }
 
-  testWidgets(
-    'should render simple card',
-    (tester) async {
-      await tester.pumpApp(child: const SimpleCard());
-      expect(find.byType(SimpleCard), findsOneWidget);
-    },
-  );
+  testWidgets('should render simple card', (tester) async {
+    await tester.pumpApp(child: const SimpleCard());
+    expect(find.byType(SimpleCard), findsOneWidget);
+  });
 
-  testWidgets(
-    'should show simple notification',
-    (tester) async {
-      when(mockCreateNotification).thenAnswer((_) async {});
-      await tester.pumpApp(
-        overrides: [
-          notificationServiceProvider.overrideWithValue(
-            mockNotificationService,
-          ),
-        ],
-        child: const SimpleCard(),
-      );
-      await tester.tap(find.byType(ElevatedButton));
-      verify(mockCreateNotification).called(1);
-    },
-  );
+  testWidgets('should show simple notification', (tester) async {
+    when(mockCreateNotification).thenAnswer((_) async {});
+    await tester.pumpApp(
+      overrides: [
+        notificationServiceProvider.overrideWithValue(mockNotificationService),
+      ],
+      child: const SimpleCard(),
+    );
+    await tester.tap(find.byType(ElevatedButton));
+    verify(mockCreateNotification).called(1);
+  });
 }

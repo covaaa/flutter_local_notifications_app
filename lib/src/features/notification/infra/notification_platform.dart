@@ -37,7 +37,8 @@ sealed class NotificationPlatform extends Equatable {
     return switch (defaultTargetPlatform) {
       TargetPlatform.android => NotificationAndroid(plugin),
       TargetPlatform.iOS => NotificationIOS(plugin),
-      TargetPlatform() => throw UnsupportedError(
+      TargetPlatform() =>
+        throw UnsupportedError(
           'Platform not supported: $defaultTargetPlatform',
         ),
     };

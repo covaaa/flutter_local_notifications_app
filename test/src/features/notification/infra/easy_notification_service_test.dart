@@ -20,40 +20,38 @@ void main() {
   late ProviderContainer container;
   late EasyNotificationService service;
 
-  setUp(
-    () async {
-      AndroidFlutterLocalNotificationsPlugin.registerWith();
-      TestWidgetsFlutterBinding.ensureInitialized();
-      flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      binaryMessengerBinding = TestDefaultBinaryMessengerBinding.instance;
-      binaryMessengerBinding.defaultBinaryMessenger.setMockMethodCallHandler(
-        const MethodChannel('dexterous.com/flutter/local_notifications'),
-        (call) async => switch (call.method) {
-          'initialize' => true,
-          'zonedSchedule' => <String, Object?>{},
-          'show' => <String, Object?>{},
-          'cancel' => <String, Object?>{},
-          'pendingNotificationRequests' => <Map<String, Object?>>[],
-          'getActiveNotifications' => <Map<String, Object?>>[],
-          'getNotificationAppLaunchDetails' => null,
-          String() => throw UnimplementedError(),
-        },
-      );
-      await flutterLocalNotificationsPlugin.initialize(
-        const InitializationSettings(
-          android: AndroidInitializationSettings('ic_launcher'),
-        ),
-      );
-      initializeTimeZones();
-      date = DateTime.now().add(const Duration(minutes: 1));
-      hello = Notification.hello();
-      scheduled = Notification.scheduled(date);
-      updatable = Notification.updatable();
-      container = ProviderContainer();
-      service = container.read(easyNotificationServiceProvider);
-    },
-  );
+  setUp(() async {
+    AndroidFlutterLocalNotificationsPlugin.registerWith();
+    TestWidgetsFlutterBinding.ensureInitialized();
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    binaryMessengerBinding = TestDefaultBinaryMessengerBinding.instance;
+    binaryMessengerBinding.defaultBinaryMessenger.setMockMethodCallHandler(
+      const MethodChannel('dexterous.com/flutter/local_notifications'),
+      (call) async => switch (call.method) {
+        'initialize' => true,
+        'zonedSchedule' => <String, Object?>{},
+        'show' => <String, Object?>{},
+        'cancel' => <String, Object?>{},
+        'pendingNotificationRequests' => <Map<String, Object?>>[],
+        'getActiveNotifications' => <Map<String, Object?>>[],
+        'getNotificationAppLaunchDetails' => null,
+        String() => throw UnimplementedError(),
+      },
+    );
+    await flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('ic_launcher'),
+      ),
+    );
+    initializeTimeZones();
+    date = DateTime.now().add(const Duration(minutes: 1));
+    hello = Notification.hello();
+    scheduled = Notification.scheduled(date);
+    updatable = Notification.updatable();
+    container = ProviderContainer();
+    service = container.read(easyNotificationServiceProvider);
+  });
 
   tearDown(() {
     container.dispose();

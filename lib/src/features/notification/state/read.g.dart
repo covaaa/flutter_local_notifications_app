@@ -16,14 +16,15 @@ String _$readNotificationHash() => r'f7e46c144a159be2d88283eda9085908e112d868';
 @ProviderFor(ReadNotification)
 final readNotificationProvider =
     AutoDisposeAsyncNotifierProvider<ReadNotification, void>.internal(
-  ReadNotification.new,
-  name: r'readNotificationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$readNotificationHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      ReadNotification.new,
+      name: r'readNotificationProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$readNotificationHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$ReadNotification = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint

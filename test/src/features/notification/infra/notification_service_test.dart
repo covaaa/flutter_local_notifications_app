@@ -19,22 +19,21 @@ void main() {
   late ProviderContainer container;
   late NotificationService service;
 
-  setUp(
-    () {
-      binding = TestDefaultBinaryMessengerBinding.instance
-        ..setUpFakeTimezone()
-        ..setUpFakeLocalNotifications();
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      AndroidFlutterLocalNotificationsPlugin.registerWith();
-      initializeTimeZones();
-      date = DateTime.now().add(const Duration(minutes: 1));
-      hello = Notification.hello();
-      scheduled = Notification.scheduled(date);
-      updatable = Notification.updatable();
-      container = ProviderContainer();
-      service = container.read(notificationServiceProvider);
-    },
-  );
+  setUp(() {
+    binding =
+        TestDefaultBinaryMessengerBinding.instance
+          ..setUpFakeTimezone()
+          ..setUpFakeLocalNotifications();
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    AndroidFlutterLocalNotificationsPlugin.registerWith();
+    initializeTimeZones();
+    date = DateTime.now().add(const Duration(minutes: 1));
+    hello = Notification.hello();
+    scheduled = Notification.scheduled(date);
+    updatable = Notification.updatable();
+    container = ProviderContainer();
+    service = container.read(notificationServiceProvider);
+  });
 
   tearDown(() {
     container.dispose();

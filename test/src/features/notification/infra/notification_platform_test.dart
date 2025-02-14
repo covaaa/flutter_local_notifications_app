@@ -11,16 +11,15 @@ void main() {
   late TestDefaultBinaryMessengerBinding binding;
   late ProviderContainer container;
 
-  setUp(
-    () {
-      binding = TestDefaultBinaryMessengerBinding.instance
-        ..setUpFakeLocalNotifications();
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      MacOSFlutterLocalNotificationsPlugin.registerWith();
-      initializeTimeZones();
-      container = ProviderContainer();
-    },
-  );
+  setUp(() {
+    binding =
+        TestDefaultBinaryMessengerBinding.instance
+          ..setUpFakeLocalNotifications();
+    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+    MacOSFlutterLocalNotificationsPlugin.registerWith();
+    initializeTimeZones();
+    container = ProviderContainer();
+  });
 
   tearDown(() {
     container.dispose();
